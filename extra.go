@@ -55,6 +55,13 @@ func (w Whois) Emails() []string {
 
 }
 
+//Parse uniq name servers from whois
+func (w Whois) ExpiryDate() []string {
+
+	return parser(regexp.MustCompile(`(?i)Expiry Date:\s+(.*?)(\s|$)`), 1, w.raw)
+
+}
+
 func (w Whois) String() string {
 	return w.raw
 }
